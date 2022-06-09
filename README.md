@@ -1,6 +1,6 @@
-##Holberton Foundations Project
+## Holberton Foundations Project
 
-#Sorting algorithms & Big O
+# Sorting algorithms & Big O
 
 **Language: C**
 
@@ -10,7 +10,7 @@ Declan Noble
 Karoline Silva
 
 
-#Sorting Algorithms Used:
+# Sorting Algorithms Used:
 
  - Bubble sort
  - Insertion sort
