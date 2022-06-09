@@ -10,7 +10,7 @@ Declan Noble
 Karoline Silva
 
 
-#Sorting Algorithms Used:
+# Sorting Algorithms Used:
 
  - Bubble sort
  - Insertion sort
