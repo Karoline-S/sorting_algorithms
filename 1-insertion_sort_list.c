@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
 
@@ -9,30 +10,16 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current = *list;
-	listint_t *smaller;
+	listint_t *current = (*list)->next;
+	listint_t *hold;
 
-	while (current->next != NULL)
+	while (current != NULL)
 	{
-		if (current->next->n < current->n)
+		if (current->n < current->prev->n)
 		{
-			smaller = current->next;
-			current->next = smaller->next;
-
-			if (current->next != NULL)
-				current->next->prev = current;
-
-			smaller->next = current;
-			smaller->prev = current->prev;
-			current->prev = smaller;
-
-			if (smaller->prev == NULL)
-				*list = smaller;
-			else
-				smaller->prev->next = smaller;
-
-			print_list(*list);
-			sort_back(list, smaller);
+			hold = current->next;
+			sort_back(list, current);
+			current = hold;
 		}
 		else
 		{
@@ -42,10 +29,15 @@ void insertion_sort_list(listint_t **list)
 }
 
 /**
+ * sort_back - recursively moves a node into position in a doubly linked list
+ * @list: a double pointer to the start of the list
+ * @node: the node to be sorted
  *
- *
- *
- *
+ * Description: checks if the int in @node is lesser than the int in the
+ * preceding node and swaps the two if it is. Continues to check the same node
+ * until it reaches the start of the list or the int is greater than the int in
+ * the preceding node
+ * Return: nothing
  */
 void sort_back(listint_t **list, listint_t *node)
 {
