@@ -27,14 +27,51 @@ void insertion_sort_list(listint_t **list)
 			current->prev = smaller;
 
 			if (smaller->prev == NULL)
-				*list = current->next;
+				*list = smaller;
+			else
+				smaller->prev->next = smaller;
 
-			current->prev->prev->next = current;
 			print_list(*list);
+			sort_back(list, smaller);
 		}
 		else
 		{
 			current = current->next;
 		}
 	}
+}
+
+/**
+ *
+ *
+ *
+ *
+ */
+void sort_back(listint_t **list, listint_t *node)
+{
+	listint_t *larger;
+
+	if (*list == node)
+		return;
+
+	if (node->n >= node->prev->n)
+		return;
+
+	larger = node->prev;
+	larger->next = node->next;
+
+	if (larger->next != NULL)
+		larger->next->prev = larger;
+
+	node->next = larger;
+	node->prev = larger->prev;
+	larger->prev = node;
+
+	if (node->prev == NULL)
+		*list = node;
+	else
+		node->prev->next = node;
+
+	print_list(*list);
+	sort_back(list, node);
 }
