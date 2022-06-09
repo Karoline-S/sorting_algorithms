@@ -18,15 +18,17 @@ void insertion_sort_list(listint_t **list)
 		{
 			smaller = current->next;
 			current->next = smaller->next;
+
 			if (current->next != NULL)
 				current->next->prev = current;
+
 			smaller->next = current;
 			smaller->prev = current->prev;
 			current->prev = smaller;
+
 			if (smaller->prev == NULL)
-			{
 				*list = current->next;
-			}
+
 			current->prev->prev->next = current;
 			print_list(*list);
 		}
