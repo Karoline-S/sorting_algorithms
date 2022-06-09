@@ -1,6 +1,6 @@
-##Holberton Foundations Project
+## Holberton Foundations Project
 
-#Sorting algorithms & Big O
+# Sorting algorithms & Big O
 
 **Language: C**
 
