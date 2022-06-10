@@ -17,7 +17,7 @@ void insertion_sort_list(listint_t **list)
 		if (current->n < current->prev->n)
 		{
 			hold = current->next;
-			sort_back(list, current);
+			insertion_sort_back(list, current);
 			current = hold;
 		}
 		else
@@ -64,5 +64,5 @@ void insertion_sort_back(listint_t **list, listint_t *node)
 		node->prev->next = node;
 
 	print_list(*list);
-	sort_back(list, node);
+	insertion_sort_back(list, node);
 }
