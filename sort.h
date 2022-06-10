@@ -23,10 +23,10 @@ void print_list(const listint_t *list);
 /* Sorting functions */
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
-void selection_sort(int *array, size_t size);
-void quick_sort(int *array, size_t size);
 void sort_back(listint_t **list, listint_t *node);
+void selection_sort(int *array, size_t size);
+void swap(int *min, int *max);
+void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
-
 
 #endif /* _SORT_H */
