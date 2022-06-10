@@ -28,7 +28,8 @@ void insertion_sort_list(listint_t **list)
 }
 
 /**
- * insertion_sort_back - recursively moves a node into position in a doubly linked list
+ * insertion_sort_back - recursively moves a node into position in a
+ * doubly linked list
  * @list: a double pointer to the start of the list
  * @node: the node to be sorted
  *
