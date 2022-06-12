@@ -28,5 +28,7 @@ void selection_sort(int *array, size_t size);
 void swap(int *min, int *max);
 void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void merge_sort_copy_array(int *copy, int *array, size_t size);
 
 #endif /* _SORT_H */
