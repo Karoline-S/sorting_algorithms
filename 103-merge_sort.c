@@ -16,6 +16,9 @@ void merge_sort(int *array, size_t size)
 	int i;
 	int end = (int)size;
 
+	if (array == NULL || size < 2)
+		return;
+
 	arrCopy = malloc(sizeof(*array) * size);
 	if (arrCopy == NULL)
 		return;
@@ -60,19 +63,23 @@ void top_down_split_merge(int *copy, int *array, int beginning, int end)
  * @mid: end point (with - 1) of a left side run, starting point of a right
  * side run
  * @end: ending point (-1) of a right side run
+ *
  * Return: nothing
  */
 void top_down_merge(int *copy, int *array, int beginning, int mid, int end)
 {
-	int i, j, k, l, m;
+	int i, j, k, n, m;
 
-	i = l = beginning;
+	i = n = beginning;
 	j = m = mid;
 
-	printf("Merging...\n [left]: %d", array[l]);
-	for (l += 1; l < mid; l++)
-		printf(", %d", array[l]);
+	printf("Merging...\n [left]: %d", array[n]);
+
+	for (n += 1; n < mid; n++)
+		printf(", %d", array[n]);
+
 	printf("\n [right]: %d", array[m]);
+
 	for (m += 1; m < end; m++)
 		printf(", %d", array[m]);
 
