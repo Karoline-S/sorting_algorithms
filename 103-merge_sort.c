@@ -16,41 +16,85 @@ void merge_sort(int *array, size_t size)
 	int i;
 	int end = (int)size;
 
-	/* allocate space for a copy of array */
 	arrCopy = malloc(sizeof(*array) * size);
 	if (arrCopy == NULL)
 		return;
 
-	/* copy array into arrCopy allocated space */
 	for (i = 0; i < (int)size; i++)
-		copy[i] = array[i];
+		arrCopy[i] = array[i];
 
-	/* sort data from arrCopy into array */
 	top_down_split_merge(arrCopy, array, 0, end);
 }
 
 /**
  * top_down_split_merge - splits array into runs, sorts both runs into arrCopy
  * and merges them back into array
- * @arrCopy: a space allocated to receive the copy
+ * @copy: a space allocated to receive the copy
  * @array: the orray to be copied
- * @start: the first element
+ * @beginning: the first element
  * @end: size of the array, or last index + 1
  *
  * Return: nothing
  */
-void top_down_split_merge(int *copy, int *array, size_t size, int beginning)
+void top_down_split_merge(int *copy, int *array, int beginning, int end)
 {
-	int i;
+	int mid;
 
+	if (end - beginning <= 1)
+		return;
+
+	mid = (end + beginning) / 2;
+
+	top_down_split_merge(array, copy, beginning, mid);
+	top_down_split_merge(array, copy, mid, end);
+	top_down_merge(array, copy, beginning, mid, end);
 }
 
-
-
-int main(void)
+/**
+ * top_down_merge - merges smaller runs from larger array
+ * @copy: a copy of the array to sort
+ * @array: orginal array to replace values in sorted order
+ * @beginning: starting point of a left side run
+ * @mid: end point (with - 1) of a left side run, starting point of a right
+ * side run
+ * @end: ending point (-1) of a right side run
+ * Return: nothing
+ */
+void top_down_merge(int *copy, int *array, int beginning, int mid, int end)
 {
-	int array [] = {5, 6, 7, 8, 9, 10};
-	size_t size = 6;
+	int i, j, k, l, m;
 
-	merge_sort(array, size);
+	i = l = beginning;
+	j = m = mid;
+
+	printf("Merging...\n[left]: %d", array[l]);
+	for (l += 1; l < mid; l++)
+		printf(", %d", array[l]);
+	printf("\n[right]: %d", array[m]);
+	for (m += 1; m < end; m++)
+		printf(", %d", array[m]);
+	printf("\n");
+
+	for (k = beginning; k < end; k++)
+	{
+		if (i < mid && (j >= end || array[i] <= array[j]))
+		{
+			copy[k] = array[i];
+			i++;
+		}
+		else
+		{
+			copy[k] = array[j];
+			j++;
+		}
+	}
+
+	k = beginning;
+
+	printf("[Done]: %d", copy[k]);
+
+	for (k = beginning + 1; k < end; k++)
+		printf(", %d", copy[k]);
+
+	printf("\n");
 }
