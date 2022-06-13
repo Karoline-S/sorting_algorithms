@@ -42,10 +42,11 @@ void quickrec(int *array, int start, int end, size_t size)
 */
 void swap(int *x, int *y)
 {
-  int tmp = 0;
-  tmp = *x;
-  *x = *y;
-  *y = tmp;
+	int tmp = 0;
+
+	tmp = *x;
+	*x = *y;
+	*y = tmp;
 }
 /**
 * partition - partitions array, swaps values, and prints
