@@ -48,13 +48,14 @@ void insertion_sort_back(listint_t **list, listint_t *node)
 {
 	listint_t *larger;
 
-	if (*list == node)
+	if (node->prev == NULL)
 		return;
 
 	if (node->n >= node->prev->n)
 		return;
 
 	larger = node->prev;
+
 	larger->next = node->next;
 
 	if (larger->next != NULL)
