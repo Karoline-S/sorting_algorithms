@@ -24,6 +24,8 @@ void merge_sort(int *array, size_t size)
 		arrCopy[i] = array[i];
 
 	top_down_split_merge(arrCopy, array, 0, end);
+
+	free(arrCopy);
 }
 
 /**
