@@ -28,6 +28,6 @@ void shell_sort(int *array, size_t size)
 			array[in + gap] = hold;
 		}
 		print_array(array, size);
-		gap /= 3;
+		gap = (gap - 1) / 3;
 	}
 }
