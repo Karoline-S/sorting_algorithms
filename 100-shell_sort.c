@@ -12,30 +12,24 @@
 void shell_sort(int *array, size_t size)
 {
 	int gap = 1;
-	int outer, inner, insert;
+	int out, in, hold;
+
+	if (array == NULL || size < 2)
+		return;
 
 	while (gap <= (int)size / 3)
 		gap = gap * 3 + 1;
 
 	while (gap > 0)
 	{
-		outer = gap;
-
-		while (outer < (int)size)
+		for (out = gap; out < (int)size; out++)
 		{
-			insert = array[outer];
-			inner = outer;
-
-			while (inner > gap - 1 && array[inner - gap] >= insert)
-			{
-				array[inner] = array[inner - gap];
-				inner -= gap;
-			}
-
-			array[inner] = insert;
-			outer++;
+			hold = array[out];
+			for (in = out - gap; in >= 0 && hold < array[in];
+			     in -= gap)
+				array[in + gap] = array[in];
+			array[in + gap] = hold;
 		}
-
 		print_array(array, size);
 		gap = (gap - 1) / 3;
 	}

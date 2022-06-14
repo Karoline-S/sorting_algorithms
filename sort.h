@@ -31,4 +31,8 @@ void cocktail_sort_list(listint_t **list);
 void quickrec(int *array, int start, int end, size_t size);
 void swap(int *x, int *y);
 int partition(int *array, size_t start, size_t end, size_t size);
+void merge_sort(int *array, size_t size);
+void top_down_split_merge(int *copy, int *array, int beginning, int end);
+void top_down_merge(int *copy, int *array, int beginning, int middile, int end);
+
 #endif /* _SORT_H */
