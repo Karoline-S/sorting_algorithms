@@ -34,5 +34,7 @@ int partition(int *array, size_t start, size_t end, size_t size);
 void merge_sort(int *array, size_t size);
 void top_down_split_merge(int *copy, int *array, int beginning, int end);
 void top_down_merge(int *copy, int *array, int beginning, int middile, int end);
+void radix_sort(int *array, size_t size);
+int find_max_elements(int *array, size_t size);
 
 #endif /* _SORT_H */
