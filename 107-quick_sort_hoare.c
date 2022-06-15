@@ -20,48 +20,50 @@ void swap(int *x, int *y)
  *@low: starting index
  *@high: ending index
  */
-
 int hoarePartition(int *array, size_t size, int low, int high)
 {
-	int pivot = array[high];
-	int h, l;
+	int pivot, above, below;
 
-	for (l = low - 1; h = high + 1; l < h)
+	pivot = array[high];
+	for (above = low - 1, below = high + 1; above < below;)
 	{
 		do {
-			l++;
-		} while (array[l] < pivot);
+			above++;
+		} while (array[above] < pivot);
 		do {
-			h--;
-		} while (array[h] > pivot);
+			below--;
+		} while (array[below] > pivot);
 
-		if (l < h)
+		if (above < below)
 		{
-			swap(&array[l], &array[h]);
+			swap(&array[above], &array[below]);
 			print_array(array, size);
 		}
-		return (l);
 	}
-}
-/**
- * hoareRec - recursively sorts an array
- *@array: pointer to an array
- *@size: size of the array
- *@low: starting index of the partition
- *@high: ending index of the partition
- */
 
+	return (above);
+}
+
+/**
+ * hoareRec - Implement the quicksort algorithm through recursion.
+ * @array: An array of integers to sort.
+ * @size: The size of the array.
+ * @low: The starting index of the array partition to order.
+ * @high: The ending index of the array partition to order.
+ *
+ */
 void hoareRec(int *array, size_t size, int low, int high)
 {
 	int pivot;
 
 	if (low < high)
 	{
-		pivot = hoarePartition(array, low, high, size);
-		hoareRec(array, size, low, pivot -1);
+		pivot = hoarePartition(array, size, low, high);
+		hoareRec(array, size, low, pivot - 1);
 		hoareRec(array, size, pivot, high);
 	}
 }
+
 /**
  * quick_sort_hoare - sorts an array of integers
  *@array: pointer to an array
@@ -71,5 +73,6 @@ void quick_sort_hoare(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	hoareRec(array, size, 0, size -1);
+
+	hoareRec(array, size, 0, size - 1);
 }
