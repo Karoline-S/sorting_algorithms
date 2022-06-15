@@ -2,7 +2,8 @@
 #include "sort.h"
 
 /**
- * radix_sort - 
+ * radix_sort - sorts an array by sorting into buckets by focusing on each
+ * significant number in LSD order
  * @array: the array to be sorted
  * @size: the size of the array
  *
@@ -10,29 +11,44 @@
  */
 void radix_sort(int *array, size_t size)
 {
-	int end = (int)size - 1;
-	int lastIdx, i, maxElements;
-	int *arrCopy = NULL;
+	int max, sigdigit, divisor, pass;
+	int i, j, k;
+	int bucketCount[10];
+	int buckets[10][10];
 
 	if (array == NULL || size < 2)
 		return;
 
-	maxElements = find_max_elements(array, size);
+	max = find_max_elements(array, size);
+	divisor = 1;
 
-	arrCopy = malloc(sizeof(*array) * size);
-	if (arrCopy == NULL)
-		return;
-
-	for (i = 0; i < (int)size; i++)
-		arrCopy[i] = array[i];
-
-	lastIdx = end;
-
-	while (end >= 0)
+	for (pass = 0; pass < max; pass++)
 	{
-		end = lastIdx;
-		
-		end--;
+		for (i = 0; i < 10; i++)
+		{
+			bucketCount[i] = 0;
+		}
+
+		for (i = 0; i < (int)size; i++)
+		{
+			sigdigit = (array[i] / divisor) % 10;
+			buckets[sigdigit][bucketCount[sigdigit]] = array[i];
+			bucketCount[sigdigit] += 1;
+		}
+
+		i = 0;
+
+		for (k = 0; k < 10; k++)
+		{
+			for (j = 0; j < bucketCount[k]; j++)
+			{
+				array[i] = buckets[k][j];
+				i++;
+			}
+		}
+
+		divisor *= 10;
+		print_array(array, size);
 	}
 }
 
@@ -42,31 +58,23 @@ void radix_sort(int *array, size_t size)
  * @array: the array to be checked
  * @size: the size of the array
  *
- * Return: nothing
+ * Return: number of digits in largest number as int
  */
-int find_max_elements(int *array, size_t, size)
+int find_max_elements(int *array, size_t size)
 {
-	int idx = 0;
-	int num = 0;
-	int count = 0;
+	int idx, count, num;
 	int max = 0;
 
-	while (idx < (int)size)
+	for (idx = 0; idx < (int)size; idx++)
 	{
 		num = array[idx];
-		do
-		{
-			num /= 10;
-			count++;
-		} while (num != 0);
+
+		for (count = 0; num != 0; count++)
+			num = num / 10;
 
 		if (count > max)
 			max = count;
-
-		idx++;
 	}
-
-	printf("max = %d\n", max);
 
 	return (max);
 }
