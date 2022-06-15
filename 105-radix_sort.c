@@ -36,9 +36,7 @@ void radix_sort(int *array, size_t size)
 		{
 			sigdigit = (array[i] / divisor) % 10;
 			buckets[sigdigit][bucketCount[sigdigit]] = array[i];
-			print_array(buckets[sigdigit], 10);
 			bucketCount[sigdigit] += 1;
-			print_array(bucketCount, 10);
 		}
 
 		i = 0;
