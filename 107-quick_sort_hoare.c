@@ -37,7 +37,7 @@ int hoarePartition(int *array, size_t size, int low, int high)
 
 		if (l < h)
 		{
-			swap(&array[l], &array[j]);
+			swap(&array[l], &array[h]);
 			print_array(array, size);
 		}
 		return (l);
