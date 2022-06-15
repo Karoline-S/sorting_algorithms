@@ -13,6 +13,7 @@ void radix_sort(int *array, size_t size)
 {
 	int max, sigdigit, divisor, pass;
 	int i, j, k;
+	int *test;
 	int bucketCount[10];
 	int buckets[10][10];
 
@@ -21,6 +22,8 @@ void radix_sort(int *array, size_t size)
 
 	max = find_max_elements(array, size);
 	divisor = 1;
+
+	test = malloc(sizeof(*array) * 10 * 2);
 
 	for (pass = 0; pass < max; pass++)
 	{
@@ -33,7 +36,9 @@ void radix_sort(int *array, size_t size)
 		{
 			sigdigit = (array[i] / divisor) % 10;
 			buckets[sigdigit][bucketCount[sigdigit]] = array[i];
+			print_array(buckets[sigdigit], 10);
 			bucketCount[sigdigit] += 1;
+			print_array(bucketCount, 10);
 		}
 
 		i = 0;
@@ -50,6 +55,8 @@ void radix_sort(int *array, size_t size)
 		divisor *= 10;
 		print_array(array, size);
 	}
+
+	free(test);
 }
 
 /**
