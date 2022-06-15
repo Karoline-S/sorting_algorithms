@@ -59,7 +59,7 @@ void top_down_split_merge(int *copy, int *array, int beginning, int end)
  * top_down_merge - merges smaller runs from larger array
  * @copy: a copy of the array to sort
  * @array: orginal array to replace values in sorted order
- * @beginning: starting point of a left side run
+ * @start: starting point of a left side run
  * @mid: end point (with - 1) of a left side run, starting point of a right
  * side run
  * @end: ending point (-1) of a right side run
