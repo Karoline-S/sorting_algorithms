@@ -37,4 +37,7 @@ void top_down_merge(int *copy, int *array, int start, int middile, int end);
 void counting_sort(int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void swap_elements(int *min, int *max);
+void radix_sort(int *array, size_t size);
+int find_max_elements(int *array, size_t size);
+
 #endif /* _SORT_H */
