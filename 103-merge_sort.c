@@ -73,12 +73,12 @@ void top_down_merge(int *copy, int *array, int start, int mid, int end)
 	i = n = start;
 	j = m = mid;
 
-	printf("Merging...\n [left]: %d", array[n]);
+	printf("Merging...\n[left]: %d", array[n]);
 
 	for (n += 1; n < mid; n++)
 		printf(", %d", array[n]);
 
-	printf("\n [right]: %d", array[m]);
+	printf("\n[right]: %d", array[m]);
 
 	for (m += 1; m < end; m++)
 		printf(", %d", array[m]);
@@ -99,7 +99,7 @@ void top_down_merge(int *copy, int *array, int start, int mid, int end)
 
 	k = start;
 
-	printf("\n [Done]: %d", copy[k]);
+	printf("\n[Done]: %d", copy[k]);
 
 	for (k = start + 1; k < end; k++)
 		printf(", %d", copy[k]);
