@@ -39,5 +39,7 @@ void heap_sort(int *array, size_t size);
 void swap_elements(int *min, int *max);
 void radix_sort(int *array, size_t size);
 int find_max_elements(int *array, size_t size);
-
+int hoarePartition(int *array, size_t size, int low, int high);
+void hoareRec(int *array, size_t size, int low, int high);
+void quick_sort_hoare(int *array, size_t size);
 #endif /* _SORT_H */
