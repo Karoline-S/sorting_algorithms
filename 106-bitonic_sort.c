@@ -29,12 +29,19 @@ void bitonic_sort(int *array, size_t size)
  */
 void recursive_sort(int *array, int start, int seqSize, int dir)
 {
-	int k;
+	int k, i;
 
 	if (seqSize > 1)
 	{
 		k = seqSize / 2;
+		printf("Merging [%d/16] (UP):\n", seqSize);
+		for (i = start; i < k; i++)
+		{
+			printf("%d, ", array[i]);
+		}
+		printf("\n");
 		recursive_sort(array, start, k, 1);
+		printf("Merging [%d/16] (DOWN)\n", seqSize);
 		recursive_sort(array, start + k, k, 0);
 		sequence_merge(array, start, seqSize, dir);
 	}
